@@ -33,15 +33,12 @@ function goToSlide(index) {
   updateCarousel();
 }
 
-// Auto-play carousel
 setInterval(() => {
   moveCarousel(1);
 }, 5000);
 
-// Start first video
 videos[0].play();
 
-// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
@@ -50,4 +47,23 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       target.scrollIntoView({ behavior: "smooth" });
     }
   });
+});
+
+
+// header
+const header = document.querySelector('.navbar');
+let lastScroll = 0;
+const scrollThreshold = 100;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+     if (currentScroll <= 0) {
+        header.classList.remove('visible');
+    } else if (currentScroll > scrollThreshold) {
+        header.classList.add('visible');
+    }
+    
+    
+    lastScroll = currentScroll;
 });
