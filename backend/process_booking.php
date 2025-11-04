@@ -1,30 +1,25 @@
 <?php
-// process_booking.php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-// Include PHPMailer (install via Composer: composer require phpmailer/phpmailer)
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
 
-// Configuration
-define('ADMIN_EMAIL', 'your-email@example.com'); // Change this to your email
-define('SMTP_HOST', 'smtp.gmail.com'); // Change based on your email provider
+define('ADMIN_EMAIL', 'your-email@example.com');
+define('SMTP_HOST', 'smtp.gmail.com');
 define('SMTP_PORT', 587);
-define('SMTP_USERNAME', 'your-email@example.com'); // Your SMTP username
-define('SMTP_PASSWORD', 'your-app-password'); // Your SMTP password or app-specific password
+define('SMTP_USERNAME', 'your-email@example.com'); 
+define('SMTP_PASSWORD', 'your-app-password'); 
 define('FROM_EMAIL', 'noreply@baliwanderway.com');
 define('FROM_NAME', 'Bali Wanderway Bookings');
 
-// Validate request method
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
     exit;
 }
 
-// Sanitize and validate input
 function sanitize($data) {
     return htmlspecialchars(strip_tags(trim($data)));
 }
@@ -33,7 +28,6 @@ function validateEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
-// Get form data
 $firstName = sanitize($_POST['firstName'] ?? '');
 $lastName = sanitize($_POST['lastName'] ?? '');
 $email = sanitize($_POST['email'] ?? '');
@@ -44,7 +38,6 @@ $guests = sanitize($_POST['guests'] ?? '');
 $location = sanitize($_POST['location'] ?? 'Not specified');
 $message = sanitize($_POST['message'] ?? 'No additional message');
 
-// Validation
 $errors = [];
 
 if (empty($firstName)) $errors[] = 'First name is required';
@@ -60,7 +53,6 @@ if (!empty($errors)) {
     exit;
 }
 
-// Package names mapping
 $packages = [
     'photo-half' => 'Photo Session - Half Day',
     'video-full' => 'Video Production - Full Day',
@@ -68,7 +60,6 @@ $packages = [
 ];
 $packageName = $packages[$packageType] ?? $packageType;
 
-// Location names mapping
 $locations = [
     'ubud' => 'Ubud Rice Terraces',
     'waterfalls' => 'Hidden Waterfalls',
@@ -79,11 +70,9 @@ $locations = [
 ];
 $locationName = $locations[$location] ?? $location;
 
-// Create PHPMailer instance
 $mail = new PHPMailer(true);
 
 try {
-    // Server settings
     $mail->isSMTP();
     $mail->Host = SMTP_HOST;
     $mail->SMTPAuth = true;
@@ -92,12 +81,10 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = SMTP_PORT;
 
-    // Recipients
     $mail->setFrom(FROM_EMAIL, FROM_NAME);
-    $mail->addAddress(ADMIN_EMAIL); // Admin email
+    $mail->addAddress(ADMIN_EMAIL);
     $mail->addReplyTo($email, "$firstName $lastName");
 
-    // Content
     $mail->isHTML(true);
     $mail->Subject = "New Booking Request from $firstName $lastName";
     
