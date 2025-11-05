@@ -1,107 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Your Adventure - Bali Wanderway</title>
-    <link rel="stylesheet" href="../css/booking.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/booking.css" />
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="logo">Bali <span>Wanderway</span></div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#gallery">Gallery</a></li>
-            <li><a href="booking.html">Book Now</a></li>
-        </ul>
+      <div class="logo">Bali <span>Wanderway</span></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="booking.html">Book Now</a></li>
+      </ul>
     </nav>
 
     <div class="booking-container">
-        <div class="booking-header">
-            <h1>Book Your Adventure</h1>
-            <p>Let's create amazing memories together</p>
+      <div class="booking-header">
+        <h1>Book Your Adventure</h1>
+        <p>Let's create amazing memories together</p>
+      </div>
+
+      <form
+        class="booking-form"
+        id="bookingForm"
+        action="process_booking.php"
+        method="POST"
+      >
+        <div class="alert" id="alertBox"></div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName"
+              >First Name <span class="required">*</span></label
+            >
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName"
+              >Last Name <span class="required">*</span></label
+            >
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
         </div>
 
-        <form class="booking-form" id="bookingForm" action="process_booking.php" method="POST">
-            <div class="alert" id="alertBox"></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email"
+              >Email Address <span class="required">*</span></label
+            >
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone"
+              >Phone Number <span class="required">*</span> [with country code]</label
+            >
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+        </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="firstName">First Name <span class="required">*</span></label>
-                    <input type="text" id="firstName" name="firstName" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name <span class="required">*</span></label>
-                    <input type="text" id="lastName" name="lastName" required>
-                </div>
+        <div class="form-group">
+          <label>Select Your Package <span class="required">*</span></label>
+          <input type="hidden" id="packageType" name="packageType" required />
+          <div class="package-options">
+            <div class="package-card" data-package="photo-half">
+              <h3>📸 Photo Session</h3>
+              <p>Half day photography tour</p>
             </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="email">Email Address <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number <span class="required">*</span></label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
+            <div class="package-card" data-package="video-full">
+              <h3>🎥 Video Production</h3>
+              <p>Full day videography experience</p>
             </div>
-
-            <div class="form-group">
-                <label>Select Your Package <span class="required">*</span></label>
-                <input type="hidden" id="packageType" name="packageType" required>
-                <div class="package-options">
-                    <div class="package-card" data-package="photo-half">
-                        <h3>📸 Photo Session</h3>
-                        <p>Half day photography tour</p>
-                    </div>
-                    <div class="package-card" data-package="video-full">
-                        <h3>🎥 Video Production</h3>
-                        <p>Full day videography experience</p>
-                    </div>
-                    <div class="package-card" data-package="combo">
-                        <h3>🌟 Combo Package</h3>
-                        <p>Photo & video combined</p>
-                    </div>
-                </div>
+            <div class="package-card" data-package="combo">
+              <h3>🌟 Combo Package</h3>
+              <p>Photo & video combined</p>
             </div>
+          </div>
+        </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="date">Preferred Date <span class="required">*</span></label>
-                    <input type="date" id="date" name="date" required>
-                </div>
-                <div class="form-group">
-                    <label for="guests">Number of Guests <span class="required">*</span></label>
-                    <input type="number" id="guests" name="guests" min="1" max="20" required>
-                </div>
-            </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="date"
+              >Preferred Date <span class="required">*</span></label
+            >
+            <input type="date" id="date" name="date" required />
+          </div>
+          <div class="form-group">
+            <label for="guests"
+              >Number of Guests <span class="required">*</span></label
+            >
+            <input
+              type="number"
+              id="guests"
+              name="guests"
+              min="1"
+              max="50"
+              required
+            />
+          </div>
+        </div>
 
-            <div class="form-group">
-                <label for="location">Preferred Location</label>
-                <select id="location" name="location">
-                    <option value="">Select a location</option>
-                    <option value="ubud">Ubud Rice Terraces</option>
-                    <option value="waterfalls">Hidden Waterfalls</option>
-                    <option value="beaches">Sunset Beaches</option>
-                    <option value="temples">Ancient Temples</option>
-                    <option value="multiple">Multiple Locations</option>
-                    <option value="custom">Custom Location</option>
-                </select>
-            </div>
+        <div class="form-group">
+          <label for="location">Preferred Location</label>
+          <select id="location" name="location">
+            <option value="" disabled selected hidden>Select a location</option>
+            <option value="canggu">Canggu</option>
+            <option value="seminyak">Seminyak</option>
+            <option value="kuta">Kuta</option>
+            <option value="ubud">Ubud</option>
+            <option value="uluwatu">Uluwatu</option>
+            <option value="denpasar">Denpasar</option>
+            <option value="nusa-dua">Nusa Dua</option>
+            <option value="multiple">Multiple Locations</option>
+            <option value="custom">Custom Location</option>
+          </select>
+        </div>
 
-            <div class="form-group">
-                <label for="message">Additional Requests or Questions</label>
-                <textarea id="message" name="message" placeholder="Tell us more about your vision..."></textarea>
-            </div>
+        <div class="form-group">
+          <label for="message">Additional Requests or Questions</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Tell us more about your vision..."
+          ></textarea>
+        </div>
 
-            <button type="submit" class="submit-btn" id="submitBtn">
-                Submit Booking Request
-            </button>
-        </form>
+        <button type="submit" class="submit-btn" id="submitBtn">
+          Submit
+        </button>
+      </form>
     </div>
 
-    <script src="booking.js"></script>
-</body>
+    <script src="../js/booking.js"></script>
+  </body>
 </html>

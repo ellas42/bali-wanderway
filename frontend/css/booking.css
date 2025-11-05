@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 
+:root {
+    --color-primary: #ff914d;
+    --color-secondary: #ffd6a5;
+    --color-blue: #58caff;
+    --color-text: #2c3e50;
+    --color-text-p: #555;
+    --color-bg: rgb(214, 245, 255);
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-primary-hover: #ff7a29;
+    --color-accent-hover: #58b966;
+    --color-blue-hover: #005285;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -10,62 +24,73 @@
 body {
     font-family: "Outfit", sans-serif;
     color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: white;
     min-height: 100vh;
     padding: 2rem;
 }
 
 .navbar {
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(10px);
-    padding: 1.5rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 15px;
-    margin-bottom: 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent;
+  padding: 1.5rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.navbar.visible {
+  transform: translateY(0);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #fff;
-    letter-spacing: 1px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 1px;
 }
 
 .logo span {
-    color: #00d4ff;
+  color: #005285;
 }
 
 .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
 }
 
 .nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+  color: #000000;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #00d4ff;
+  color: var(--color-blue-hover);
 }
 
 .booking-container {
     max-width: 900px;
     margin: 0 auto;
-    background: white;
+    background: var(--color-white);
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
 
 .booking-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: white;
+    color: black;
     padding: 3rem;
     text-align: center;
 }
@@ -111,7 +136,7 @@ body {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #000000;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -133,8 +158,9 @@ body {
 .submit-btn {
     width: 100%;
     padding: 1.2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    font-family: "Outfit", sans-serif;
+    background: var(--color-bg);
+    color: black;
     border: none;
     border-radius: 10px;
     font-size: 1.1rem;
@@ -145,14 +171,13 @@ body {
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
 }
 
 .submit-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
-}
+}   
 
 .alert {
     padding: 1rem;
