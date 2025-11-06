@@ -205,7 +205,6 @@ body {
 
 .carousel-item {
   min-width: calc((100% - 24px) / 3);
-  flex: 0 0 calc((100% - 24px) / 3);
   position: relative;
   aspect-ratio: 9/16;
   background: #000;

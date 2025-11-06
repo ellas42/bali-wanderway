@@ -33,9 +33,10 @@ function goToSlide(index) {
   updateCarousel();
 }
 
-setInterval(() => {
-  moveCarousel(1);
-}, 5000);
+//auto scroll for now do NOT enable for the love of god
+//setInterval(() => {
+  //moveCarousel(1);
+//}, 5000);
 
 videos[0].play();
 
