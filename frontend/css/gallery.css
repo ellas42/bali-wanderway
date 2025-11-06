@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+
+:root {
+    --color-primary: #ff914d;
+    --color-secondary: #ffd6a5;
+    --color-blue: #58caff;
+    --color-text: #2c3e50;
+    --color-text-p: #555;
+    --color-bg: rgb(214, 245, 255);
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-primary-hover: #ff7a29;
+    --color-accent-hover: #58b966;
+    --color-blue-hover: #005285;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: "Outfit", sans-serif;
+    color: #333;
+    background: white;
+    min-height: 100vh;
+    padding: 2rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;  
+  width: 100%;
+  background: transparent;
+  padding: 1.5rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.navbar.visible {
+  transform: translateY(0);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #005285;
+}
+
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--color-blue-hover);
+}@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+
+:root {
+    --color-primary: #ff914d;
+    --color-secondary: #ffd6a5;
+    --color-blue: #58caff;
+    --color-text: #2c3e50;
+    --color-text-p: #555;
+    --color-bg: rgb(214, 245, 255);
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-primary-hover: #ff7a29;
+    --color-accent-hover: #58b966;
+    --color-blue-hover: #005285;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: "Outfit", sans-serif;
+    color: #333;
+    background: white;
+    min-height: 100vh;
+    padding: 2rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;  
+  width: 100%;
+  background: transparent;
+  padding: 1.5rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.navbar.visible {
+  transform: translateY(0);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000000;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #005285;
+}
+
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--color-blue-hover);
+}
+
+.title {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.title h1 {
+    font-size: 2.5rem;
+    color: var(--color-text);
+}
+
+.title p {
+    font-size: 1.2rem;
+    color: var(--color-text-p);
+    margin-top: 0.5rem;
+}
