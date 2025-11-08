@@ -60,11 +60,15 @@ $packages = [
 ];
 $packageName = $packages[$packageType] ?? $packageType;
 
+//CHANGE LOC NAMES AS BOOKINGS 
 $locations = [
-    'ubud' => 'Ubud Rice Terraces',
-    'waterfalls' => 'Hidden Waterfalls',
-    'beaches' => 'Sunset Beaches',
-    'temples' => 'Ancient Temples',
+    'canggu' => 'Canggu',
+    'seminyak' => 'Seminyak',
+    'kuta' => 'Kuta',
+    'ubud' => 'Ubud',
+    'uluwatu' => 'Uluwatu',
+    'denpasar' => 'Denpasar',
+    'nusa-dua' => 'Nusa Dua',
     'multiple' => 'Multiple Locations',
     'custom' => 'Custom Location'
 ];
@@ -199,7 +203,10 @@ try {
     
     echo json_encode(['success' => true, 'message' => 'Booking submitted successfully']);
     
-} catch (Exception $e) {
+}
+
+// not called ??? for error msg to email ????
+catch (Exception $e) {
     error_log("Email error: " . $mail->ErrorInfo);
     echo json_encode(['success' => false, 'message' => 'Unable to send booking. Please try again later.']);
 }
