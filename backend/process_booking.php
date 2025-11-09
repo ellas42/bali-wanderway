@@ -205,9 +205,8 @@ try {
     
 }
 
-// not called ??? for error msg to email ????
+// not called ??? >> STILL NOT CALLED FOR  
 catch (Exception $e) {
     error_log("Email error: " . $mail->ErrorInfo);
     echo json_encode(['success' => false, 'message' => 'Unable to send booking. Please try again later.']);
 }
-?>
