@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
 
-define('ADMIN_EMAIL', 'your-email@example.com');
+define('ADMIN_EMAIL', 'ellalianaa06@gmail.com');
 define('SMTP_HOST', 'smtp.gmail.com');
 define('SMTP_PORT', 587);
 define('SMTP_USERNAME', 'your-email@example.com'); 
@@ -43,7 +43,7 @@ $errors = [];
 if (empty($firstName)) $errors[] = 'First name is required';
 if (empty($lastName)) $errors[] = 'Last name is required';
 if (empty($email) || !validateEmail($email)) $errors[] = 'Valid email is required';
-if (empty($phone)) $errors[] = 'Phone number is required';
+if (empty($phone)) $errors[] = 'Valid phone number is required';
 if (empty($packageType)) $errors[] = 'Package type is required';
 if (empty($date)) $errors[] = 'Preferred date is required';
 if (empty($guests) || !is_numeric($guests)) $errors[] = 'Valid number of guests is required';
@@ -60,7 +60,6 @@ $packages = [
 ];
 $packageName = $packages[$packageType] ?? $packageType;
 
-//CHANGE LOC NAMES AS BOOKINGS 
 $locations = [
     'canggu' => 'Canggu',
     'seminyak' => 'Seminyak',
@@ -76,23 +75,11 @@ $locationName = $locations[$location] ?? $location;
 
 $mail = new PHPMailer(true);
 
-try {
-    $mail->isSMTP();
-    $mail->Host = SMTP_HOST;
-    $mail->SMTPAuth = true;
-    $mail->Username = SMTP_USERNAME;
-    $mail->Password = SMTP_PASSWORD;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = SMTP_PORT;
 
-    $mail->setFrom(FROM_EMAIL, FROM_NAME);
-    $mail->addAddress(ADMIN_EMAIL);
-    $mail->addReplyTo($email, "$firstName $lastName");
+//defining email body BEFORE TRY {} 
 
-    $mail->isHTML(true);
-    $mail->Subject = "New Booking Request from $firstName $lastName";
-    
-    $emailBody = "
+//for admin
+ $emailBody = "
     <html>
     <head>
         <style>
@@ -149,27 +136,8 @@ try {
     </body>
     </html>
     ";
-    
-    $mail->Body = $emailBody;
-    $mail->AltBody = "New Booking Request\n\nName: $firstName $lastName\nEmail: $email\nPhone: $phone\nPackage: $packageName\nDate: $date\nGuests: $guests\nLocation: $locationName\nMessage: $message";
 
-    $mail->send();
-    
-    //confirmation email to user
-    $confirmMail = new PHPMailer(true);
-    $confirmMail->isSMTP();
-    $confirmMail->Host = SMTP_HOST;
-    $confirmMail->SMTPAuth = true;
-    $confirmMail->Username = SMTP_USERNAME;
-    $confirmMail->Password = SMTP_PASSWORD;
-    $confirmMail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $confirmMail->Port = SMTP_PORT;
-    
-    $confirmMail->setFrom(FROM_EMAIL, FROM_NAME);
-    $confirmMail->addAddress($email);
-    $confirmMail->isHTML(true);
-    $confirmMail->Subject = "Booking Confirmation - Bali Wanderway";
-    
+//for user
     $confirmBody = "
     <html>
     <head>
@@ -197,16 +165,55 @@ try {
     </body>
     </html>
     ";
+
+
+try {
+    //booking notif on admins email
+    $mail->isSMTP();
+    $mail->Host = SMTP_HOST;
+    $mail->SMTPAuth = true;
+    $mail->Username = SMTP_USERNAME;
+    $mail->Password = SMTP_PASSWORD;
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = SMTP_PORT;
+
+    $mail->setFrom(FROM_EMAIL, FROM_NAME);
+    $mail->addAddress(ADMIN_EMAIL);
+    $mail->addReplyTo($email, "$firstName $lastName");
+
+    $mail->isHTML(true);
+    $mail->Subject = "New Booking Request from $firstName $lastName";
+    $mail->Body =  $emailBody; //defined before try
+    $mail->AltBody = "New Booking Request\n\nName: $firstName $lastName\nEmail: $email\nPhone: $phone\nPackage: $packageName\nDate: $date\nGuests: $guests\nLocation: $locationName\nMessage: $message";
+
+    $mail->send();
+        
+    //confirmation email to user
+    $confirmMail = new PHPMailer(true);
+    $confirmMail->isSMTP();
+    $confirmMail->Host = SMTP_HOST;
+    $confirmMail->SMTPAuth = true;
+    $confirmMail->Username = SMTP_USERNAME;
+    $confirmMail->Password = SMTP_PASSWORD;
+    $confirmMail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $confirmMail->Port = SMTP_PORT;
     
-    $confirmMail->Body = $confirmBody;
+    $confirmMail->setFrom(FROM_EMAIL, FROM_NAME);
+    $confirmMail->addAddress($email);
+    $confirmMail->isHTML(true);
+    $confirmMail->Subject = "Booking Confirmation - Bali Wanderway";
+
+    
+    $confirmMail->Body = $confirmBody; //defined before try
     $confirmMail->send();
     
     echo json_encode(['success' => true, 'message' => 'Booking submitted successfully']);
     
 }
 
-// not called ??? >> STILL NOT CALLED FOR  
+// not called ??? >> STILL NOT CALLED FOR
 catch (Exception $e) {
-    error_log("Email error: " . $mail->ErrorInfo);
+    error_log("Email error: " . $e->getMessage()); //should be right, changed $mail->ErrorInfo
     echo json_encode(['success' => false, 'message' => 'Unable to send booking. Please try again later.']);
 }
+?>
