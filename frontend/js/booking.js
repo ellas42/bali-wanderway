@@ -15,7 +15,6 @@ window.addEventListener('scroll', toggleHeaderOnScroll);
 window.addEventListener('load', toggleHeaderOnScroll);
 
 
-
 const packageCards = document.querySelectorAll('.package-card');
 const packageInput = document.getElementById('packageType');
 const form = document.getElementById('bookingForm');
@@ -67,7 +66,7 @@ function showAlert(message, type) {
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  //check required >> DELETE REQUIRED FROM HTML
+  //check required >> DO NOT DELETE REQUIRED FROM HTML
   if (!packageInput.value) {
     showAlert('Please select a package before submitting.', 'error');
     return;
@@ -108,3 +107,27 @@ form.addEventListener('submit', async (e) => {
     submitButton.textContent = 'Submit Booking Request';
   }
 });
+
+//custom location
+const locationSelect = document.getElementedBy('location');
+const customLocation = document.getElementedBy('customLocation');
+const customLocationTextArea = document.getElementedBy('custom-location');
+
+locationSelect.addEventListener('change', (e)=> {
+  const selectedValue = e.target.value;
+
+  if (selectedValue == 'multiple' || 'custom') {
+    customLocation.removeAttribute('hidden');
+    customLocationTextArea.setAttribute('required', 'required');
+
+    if (selectedValue == 'multiple') {
+      customLocationTextArea.placeholder = 'Please specify which location';
+    } else {
+      customLocationTextArea.placeholder = 'Which area in Bali will we be in?';
+    }
+  } else {
+    customLocation.setAttribute('hidden', 'hidden');
+    customLocationTextArea.removeAttribute('required');
+    customLocationTextArea.value = '';
+  }
+})

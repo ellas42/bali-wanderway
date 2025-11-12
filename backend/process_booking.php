@@ -60,6 +60,9 @@ $packages = [
 ];
 $packageName = $packages[$packageType] ?? $packageType;
 
+$location = sanitize($_POST['location'] ?? 'Not specified');
+$customLocation = sanitize($_POST['custom-location'] ?? '');
+
 $locations = [
     'canggu' => 'Canggu',
     'seminyak' => 'Seminyak',
@@ -71,7 +74,12 @@ $locations = [
     'multiple' => 'Multiple Locations',
     'custom' => 'Custom Location'
 ];
-$locationName = $locations[$location] ?? $location;
+
+if (($location === 'multiple' || $location === 'custom') && !empty($customLocation)) {
+    $locationName = $customLocation;
+} else {
+    $locationName = $locations[$location] ?? $location;
+}
 
 $mail = new PHPMailer(true);
 
