@@ -109,9 +109,9 @@ form.addEventListener('submit', async (e) => {
 });
 
 //custom location
-const locationSelect = document.getElementedBy('location');
-const customLocation = document.getElementedBy('customLocation');
-const customLocationTextArea = document.getElementedBy('custom-location');
+const locationSelect = document.getElementById('location');
+const customLocation = document.getElementById('customLocation');
+const customLocationTextArea = document.getElementById('custom-location');
 
 locationSelect.addEventListener('change', (e)=> {
   const selectedValue = e.target.value;
@@ -121,9 +121,9 @@ locationSelect.addEventListener('change', (e)=> {
     customLocationTextArea.setAttribute('required', 'required');
 
     if (selectedValue == 'multiple') {
-      customLocationTextArea.placeholder = 'Please specify which location';
+      customLocationTextArea.placeholder = 'Which areas in Bali will we be in?';
     } else {
-      customLocationTextArea.placeholder = 'Which area in Bali will we be in?';
+      customLocationTextArea.placeholder = 'Please specify which area in Bali we will be in';
     }
   } else {
     customLocation.setAttribute('hidden', 'hidden');
