@@ -10,7 +10,7 @@ require 'vendor/autoload.php';
 define('ADMIN_EMAIL', 'ellalianaa06@gmail.com');
 define('SMTP_HOST', 'smtp.gmail.com');
 define('SMTP_PORT', 587);
-define('SMTP_USERNAME', 'your-email@example.com'); 
+define('SMTP_USERNAME', 'ellalianaa06@gmail.com'); 
 define('SMTP_PASSWORD', 'your-app-password'); 
 define('FROM_EMAIL', 'noreply@baliwanderway.com');
 define('FROM_NAME', 'Bali Wanderway Bookings');
@@ -93,10 +93,10 @@ $mail = new PHPMailer(true);
         <style>
             body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
+            .header { background: white; color: black; padding: 20px; text-align: center; }
             .content { background: #f9f9f9; padding: 20px; }
             .field { margin-bottom: 15px; }
-            .label { font-weight: bold; color: #667eea; }
+            .label { font-weight: bold; color: #000000ff; }
             .value { margin-top: 5px; }
         </style>
     </head>
@@ -152,7 +152,7 @@ $mail = new PHPMailer(true);
         <style>
             body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; }
+            .header { background: white; color: black; padding: 30px; text-align: center; }
             .content { background: #f9f9f9; padding: 30px; }
         </style>
     </head>
@@ -167,7 +167,7 @@ $mail = new PHPMailer(true);
                 <p>Our team will review your request and get back to you within 24 hours to confirm availability and discuss the details.</p>
                 <p>If you have any immediate questions, feel free to reply to this email.</p>
                 <p>Looking forward to creating amazing memories with you in Bali!</p>
-                <p><strong>The Bali Wanderway Team</strong></p>
+                <p><strong>Bali Wanderway Team</strong></p>
             </div>
         </div>
     </body>

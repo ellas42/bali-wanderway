@@ -123,7 +123,7 @@ locationSelect.addEventListener('change', (e)=> {
     if (selectedValue == 'multiple') {
       customLocationTextArea.placeholder = 'Which areas in Bali will we be in?';
     } else {
-      customLocationTextArea.placeholder = 'Please specify which area in Bali we will be in';
+      customLocationTextArea.placeholder = 'Please specify which area in Bali';
     }
   } else {
     customLocation.setAttribute('hidden', 'hidden');
